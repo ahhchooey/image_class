@@ -12,7 +12,9 @@
     "@tensorflow-models/mobilenet": "^2.0.4",
     "@tensorflow/tfjs": "^2.1.0",
     "@tensorflow/tfjs-node": "^2.1.0",
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "formidable": "^1.2.2",
     "nodemon": "^2.0.4"
   }
 }

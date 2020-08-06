@@ -3,6 +3,7 @@ const app = express();
 
 const tf = require("@tensorflow/tfjs");
 const tfcore = require("@tensorflow/tfjs-node");
+const mobilenet = require("@tensorflow-models/mobilenet");
 
 const server = require("http").Server(app);
 
