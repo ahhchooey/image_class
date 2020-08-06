@@ -7,5 +7,9 @@
   },
   "repository": "https://github.com/ahhchooey/image_class.git",
   "author": "Alex Chui <ahhchui@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
 }
