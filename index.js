@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
 
+const tf = require("@tensorflow/tfjs");
+const tfcore = require("@tensorflow/tfjs-node");
+
 const server = require("http").Server(app);
 
 const port = process.env.PORT || 80;
