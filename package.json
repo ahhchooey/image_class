@@ -1,0 +1,11 @@
+{
+  "name": "imgclass",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "repository": "https://github.com/ahhchooey/image_class.git",
+  "author": "Alex Chui <ahhchui@gmail.com>",
+  "license": "MIT"
+}
