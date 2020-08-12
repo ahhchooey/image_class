@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import * as axios from "axios";
 
-import {Upload, message, Tooltip, Button} from "antd";
+import {Upload, message, Tooltip, Button, Input} from "antd";
 import {UploadOutlined} from "@ant-design/icons";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
   const [url, setUrl] = React.useState();
 
   const handleUrlRequest = (e) => {
-    axios.post("/image-from-url", {url: url}).then(() => {
+    axios.post("/image-from-url", {url: url}).then((response) => {
       setClassification(response.data.classification);
     });
   }
@@ -43,7 +43,7 @@ function App() {
               if (info.file.status === "done") {
                 setClassification(info.file.response.classification);
               } else if (info.file.status === "error") {
-                message.error(infot.file.response);
+                message.error(info.file.response);
               }
             }}
           >
