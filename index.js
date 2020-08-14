@@ -19,15 +19,22 @@ app.post("/image", (req, res) => {
     maxFileSize: 104857600, // 10MB
   })
 
-  form.parse(req, async (err, fields, filds) => {
+  form.parse(req, async (err, fields, files) => {
     if (err) {
       res.status(500).send("Something went wrong during upload.")
     } else {
-      whatIsThis(files.upload.path).then(imageClassification => {
-        res.state(200).send({
-          classification: imageClassification,
+      whatIsThis(files.upload.path)
+        .then(imageClassification => {
+          res.state(200).send({
+            classification: imageClassification,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          res
+            .status(500)
+            .send("Something went wrong while fetching image from URL.");
         });
-      });
     }
   });
 });
@@ -53,7 +60,7 @@ function whatIsThis(url) {
         const pixelCount = image.width * image.height;
         const vals = new Int32Array(pixelCount*channelCount);
 
-        let pixels = imgage.data;
+        let pixels = image.data;
 
         for (let i = 0; i < pixelCount; i++) {
           for (let k = 0; k < channelCount; k++) {
@@ -83,7 +90,7 @@ const path = require("path");
 app.use(express.static(path.join(__dirname, "client/build")));
 
 app.get("*", (req, res) => {
-  res.sendFile("./client/build/index.html", (root: __dirname));
+  res.sendFile("./client/build/index.html", {root: __dirname});
 })
 
 server.listen(port, (req, res) => {
