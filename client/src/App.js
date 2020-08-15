@@ -22,7 +22,7 @@ function App() {
           <div>
             I'm {classification[0].probability * 100}% sure that this is:
           </div>
-          <div style={{fontWeigt: "bold", fontSize: "2em"}}>
+          <div style={{fontWeight: "bold", fontSize: "2em"}}>
             {classification[0].className}
           </div>
           {classification[1] ? <span>
@@ -39,7 +39,7 @@ function App() {
             name={"upload"}
             showUploadList={false}
             action={"/image"}
-            onChange={info => {
+            onChange={(info) => {
               if (info.file.status === "done") {
                 setClassification(info.file.response.classification);
               } else if (info.file.status === "error") {
@@ -57,8 +57,8 @@ function App() {
           <Input onChange={e => setUrl(e.target.value)} placeholder={"Or paste a link..."} />
           <Button onClick={() => handleUrlRequest()}>Go</Button>
       </div>
-    }
-  </div>
+      }
+    </div>
   );
 }
 
