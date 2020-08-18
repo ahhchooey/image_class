@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import * as axios from "axios";
 
+import "antd/dist/antd.css";
 import {Upload, message, Tooltip, Button, Input} from "antd";
 import {UploadOutlined} from "@ant-design/icons";
 
@@ -16,9 +17,17 @@ function App() {
     });
   }
 
+  const handleUploadChange = (info) => {
+    if (info.file.status === "done") {
+      setClassification(info.file.response.classification);
+    } else if (info.file.status === "error") {
+      message.error(info.file.response);
+    }
+  }
+
   return (
     <div className="App">
-      {classification ? <div>
+      {classification ? (<div>
           <div>
             I'm {classification[0].probability * 100}% sure that this is:
           </div>
@@ -33,19 +42,13 @@ function App() {
               {classification[1].className}
             </div>
           </span> : null}
-        </div> : 
+        </div>) : (
         <div>
           <Upload
             name={"upload"}
             showUploadList={false}
             action={"/image"}
-            onChange={(info) => {
-              if (info.file.status === "done") {
-                setClassification(info.file.response.classification);
-              } else if (info.file.status === "error") {
-                message.error(info.file.response);
-              }
-            }}
+            onChange={(info) => handleUploadChange(info)}
           >
             <Tooltip title={"Upload an image"}>
               <Button icon={<UploadOutlined />} />
@@ -56,8 +59,8 @@ function App() {
           </div>
           <Input onChange={e => setUrl(e.target.value)} placeholder={"Or paste a link..."} />
           <Button onClick={() => handleUrlRequest()}>Go</Button>
-      </div>
-      }
+        </div>
+      )}
     </div>
   );
 }
